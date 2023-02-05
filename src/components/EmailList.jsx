@@ -81,7 +81,6 @@ function EmailList() {
         <EmailRow
           title="! link to my github"
           subject=":b"
-          linkDesc
           description="https://github.com/diffim"
         />
 

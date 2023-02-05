@@ -43,11 +43,16 @@ function EmailRow({ id, title, subject, description, time, image }) {
         </div>
 
         <div className="emailRow__messages">
-          <h3 className="emailRow__title ">{title}</h3>
+          <h3 className="emailRow__title ">
+            <p>{title}</p>
+          </h3>
           <div className="emailRow__message">
             <h4>
-              {subject}{" "}
-              <span className="emailRow__description"> - {description} </span>
+              <p>{subject}</p>{" "}
+              <span className="emailRow__description">
+                {" "}
+                - <span>{description}</span>{" "}
+              </span>
             </h4>
           </div>
           <div className="emailRow__time">{time}</div>

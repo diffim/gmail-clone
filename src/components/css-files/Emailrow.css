@@ -5,7 +5,8 @@
 
 .emailRow {
   text-overflow: ellipsis;
-
+  overflow: hidden;
+  max-width: 100%;
   padding: 5px 20px;
   height: 45px;
   border-bottom: 1px solid whitesmoke;
@@ -22,9 +23,10 @@
 }
 
 .emailRow__messages {
-  display: flex;
-  flex: 1;
-  max-width: 800px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+
+  max-width: 900px;
   justify-content: space-between;
 }
 
@@ -38,13 +40,12 @@
 }
 
 .emailRow__message > h4 {
-  min-width: 200px;
-
-  max-width: 400px;
   display: flex;
+  margin-left: 20px;
   justify-content: center;
   white-space: nowrap;
   overflow: hidden;
+  max-width: 400px;
   font-size: 14px;
   text-overflow: ellipsis;
   padding-left: 5px;
@@ -53,6 +54,9 @@
 
 .emailRow__title {
   font-size: 16px;
+  overflow: hidden;
+  padding-right: 0px;
+  max-width: 230px;
   font-weight: bold;
 }
 
