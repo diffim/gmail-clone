@@ -29,6 +29,8 @@ function SendMail() {
       to: formData.to,
       subject: formData.subject,
       message: formData.message,
+      image: formData.image,
+
       //this basically means change the time it was sent dynamically based on the users timezone that they currently reside in
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
@@ -86,6 +88,13 @@ function SendMail() {
           <p className="sendMail__errorMessage">{errors.subject.message}</p>
         )}
 
+        <input
+          name="image"
+          type="text"
+          autoComplete="off"
+          placeholder="Image url (optional)"
+          {...register("image")}
+        />
         <input
           name="message"
           type="text"

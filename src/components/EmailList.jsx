@@ -77,6 +77,14 @@ function EmailList() {
         <Section Icon={LocalOfferOutlined} title="Promotions" color="green" />
       </div>
       <div className="emailList__list">
+        <EmailRow title="! tip" subject="press the user icon to log out" />
+        <EmailRow
+          title="! link to my github"
+          subject=":b"
+          linkDesc
+          description="https://github.com/diffim"
+        />
+
         {emails.map((email) => (
           <EmailRow
             key={email.id}
@@ -84,6 +92,7 @@ function EmailList() {
             title={email.data.to}
             subject={email.data.subject}
             description={email.data.message}
+            image={email.data.image ? email.data.image : undefined}
             time={new Date(email.data.timestamp?.seconds * 1000).toUTCString()}
           />
         ))}

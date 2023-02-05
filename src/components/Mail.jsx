@@ -21,6 +21,7 @@ import "./css-files/Mail.css";
 
 function Mail() {
   const mail = useSelector(selectOpenMail);
+  console.log(mail);
   return (
     <div className="mail">
       <div className="mail__tools">
@@ -83,6 +84,14 @@ function Mail() {
           <div className="mail__message">
             <p>{mail?.description}</p>
           </div>
+
+          {mail?.image ? (
+            <div className="mail__img">
+              <img src={mail.image} alt="gmailimg" className="postImage" />
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </div>

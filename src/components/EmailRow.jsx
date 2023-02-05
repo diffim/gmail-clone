@@ -10,7 +10,7 @@ import { Link, redirect } from "react-router-dom";
 import { selectMail } from "../features/mailSlice";
 import "./css-files/Emailrow.css";
 
-function EmailRow({ id, title, subject, description, time }) {
+function EmailRow({ id, title, subject, description, time, image }) {
   const dispatch = useDispatch();
 
   function openMail() {
@@ -19,6 +19,7 @@ function EmailRow({ id, title, subject, description, time }) {
         id,
         title,
         subject,
+        image,
         description,
         time,
       })
@@ -42,7 +43,7 @@ function EmailRow({ id, title, subject, description, time }) {
         </div>
 
         <div className="emailRow__messages">
-          <h3 className="emailRow__title">{title}</h3>
+          <h3 className="emailRow__title ">{title}</h3>
           <div className="emailRow__message">
             <h4>
               {subject}{" "}

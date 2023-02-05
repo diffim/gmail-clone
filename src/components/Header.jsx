@@ -1,6 +1,8 @@
 import {
   Apps,
   ArrowDropDown,
+  DarkMode,
+  LightMode,
   Menu,
   Notifications,
   Search,
@@ -8,12 +10,19 @@ import {
 import { Avatar, IconButton, MenuList } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  deselectDarkMode,
+  selectDarkMode,
+  selectOpenDarkMode,
+} from "../features/darkModeSlice";
 import { logout, selectUser } from "../features/userSlice";
 import { firebaseAuth } from "../firebase";
 import "./css-files/Header.css";
 
 function Header() {
   const user = useSelector(selectUser);
+  const darkMode = useSelector(selectOpenDarkMode);
+
   const dispatch = useDispatch();
 
   function signOut() {
@@ -41,9 +50,16 @@ function Header() {
         <ArrowDropDown className="header_inputCaret" />
       </div>
       <div className="header__right">
-        <IconButton>
-          <Apps />
-        </IconButton>
+        {darkMode ? (
+          <IconButton onClick={() => dispatch(deselectDarkMode())}>
+            <LightMode className="pulse" />
+          </IconButton>
+        ) : (
+          <IconButton onClick={() => dispatch(selectDarkMode())}>
+            <DarkMode className="pulse" />
+          </IconButton>
+        )}
+
         <IconButton>
           <Notifications />
         </IconButton>

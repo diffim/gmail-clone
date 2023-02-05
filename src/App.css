@@ -8,6 +8,109 @@
   transition: 1s all;
 }
 
-.opacity-0 {
+/* i did the dark mode in a hurry i prolly wouldve did it another way if i had some time */
+
+.dark {
+  color: #c4c7c5;
+  background-color: rgb(35, 35, 43);
+}
+
+.dark * {
+  border: 0px rgb(128, 128, 128) solid !important ;
+}
+
+.dark input {
+  color: white;
+  background-color: rgb(63, 62, 62) !important;
+}
+
+.dark .header__middle,
+.emailList__settings {
+  background-color: rgb(63, 62, 62);
+}
+
+.dark .emailList__sections {
+  background-color: rgb(63, 62, 62);
+}
+
+.dark .emailList__settings {
+  background-color: rgb(63, 62, 62);
+}
+
+.dark .emailList__sections > * {
+  border: none !important;
+  margin: 1px !important;
+
+  background-color: rgb(63, 62, 62) !important;
+}
+
+.dark .sidebar {
+  border-right: #333335 1px solid !important;
+}
+
+.dark .emailList__sections > *:hover {
+  border-bottom: none !important;
+  border-bottom: rgb(240, 240, 240) solid 2px !important;
+  color: rgb(192, 192, 204) !important;
+}
+
+.dark .emailRow {
+  border-bottom: rgb(77, 77, 77) solid 1px !important;
+}
+.emailRow__description {
+  margin-left: 4px;
+}
+
+.dark .emailRow__description {
+  color: rgb(146, 146, 146) !important;
+}
+
+.dark .emailRow:hover {
+  border-top: 1px solid rgb(77, 77, 77) !important;
+  box-shadow: 0px 4px 4px -2px rgba(175, 175, 175, 0.24);
+}
+
+.dark .section-selected {
+  border-bottom: rgb(240, 240, 240) solid 2px !important;
+
+  color: rgb(192, 192, 204) !important;
+}
+
+.dark .sidebarOption:hover > .darkbg {
+  background-color: rgb(75, 73, 73);
+}
+
+.dark .sidebarOption:hover,
+.sidebarOption:hover > p,
+.sidebarOption:hover > h3,
+.sidebar--active {
+  background-color: rgb(75, 73, 73);
+}
+
+.dark .sidebar--active {
+  background-color: rgb(75, 73, 73);
+}
+
+.dark .sidebar_compose {
+  background-color: rgb(75, 73, 73) !important;
+
+  color: rgb(192, 192, 204);
+}
+
+.dark .opacity-0 {
   opacity: 0;
+}
+
+.dark .mail {
+  color: whitesmoke;
+  background-color: rgb(35, 35, 43);
+}
+
+.dark .mail__tools {
+  background-color: rgb(63, 62, 62) !important;
+}
+
+.dark .mail__body {
+  background-color: rgb(63, 62, 62) !important;
+  color: whitesmoke;
 }

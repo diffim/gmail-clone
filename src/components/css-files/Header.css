@@ -47,3 +47,21 @@
   display: flex;
   align-items: center;
 }
+
+.pulse {
+  animation: animate 3s 5 ease-in-out;
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

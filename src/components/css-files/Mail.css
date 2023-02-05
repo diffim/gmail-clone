@@ -35,6 +35,16 @@
   min-height: 88vh;
 }
 
+.mail__img {
+  margin-top: 80px;
+  max-width: 1000px;
+}
+
+.postImage {
+  width: 80%;
+  object-fit: cover;
+}
+
 .mail__bodyHeader > h2 {
   font-weight: 400;
   margin-right: 20px;

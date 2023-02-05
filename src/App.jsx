@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import Mail from "./components/Mail";
 import SendMail from "./components/SendMail";
 import Sidebar from "./components/Sidebar";
+import { selectDarkMode, selectOpenDarkMode } from "./features/darkModeSlice";
 import mailSlice, { selectSendMessageIsOpen } from "./features/mailSlice";
 import { login, selectUser } from "./features/userSlice";
 import { firebaseAuth } from "./firebase";
@@ -15,6 +16,8 @@ import { firebaseAuth } from "./firebase";
 function App() {
   const sendMessageIsOpen = useSelector(selectSendMessageIsOpen);
   const user = useSelector(selectUser);
+  const darkModeClass = useSelector(selectOpenDarkMode);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,7 +39,7 @@ function App() {
       {!user ? (
         <Login />
       ) : (
-        <div className="App">
+        <div className={`App ${darkModeClass ? "dark" : ""} `}>
           <Header />
           <div className="app__body">
             <Sidebar />
