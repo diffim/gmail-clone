@@ -1,0 +1,28 @@
+.sidebar {
+  height: 100%;
+  position: relative;
+  flex: 0.3;
+  max-width: 300px;
+  padding-right: 20px;
+  border-right: 1px whitesmoke solid;
+}
+.sidebar_compose {
+  margin-top: 15px !important;
+  margin-left: 10px !important;
+  margin-bottom: 15px !important;
+  text-transform: capitalize !important;
+  color: gray;
+  padding: 15px !important;
+  border-radius: 30px !important;
+  box-shadow: 0px 2px 5px -2px rgba(0, 0, 0, 0.75);
+}
+
+.sidebar__footer {
+  margin-top: auto;
+
+  position: absolute;
+  bottom: 70px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}

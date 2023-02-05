@@ -1,0 +1,13 @@
+.app__body {
+  display: flex;
+  height: 100vh;
+}
+
+.sendMail__container {
+  opacity: 1;
+  transition: 1s all;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
