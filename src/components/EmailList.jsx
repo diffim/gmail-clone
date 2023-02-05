@@ -77,7 +77,11 @@ function EmailList() {
         <Section Icon={LocalOfferOutlined} title="Promotions" color="green" />
       </div>
       <div className="emailList__list">
-        <EmailRow title="! tip" subject="press the user icon to log out" />
+        <EmailRow
+          title="! tip"
+          subject="press the user icon to log out"
+          description="click + compose for new email"
+        />
         <EmailRow
           title="! link to my github"
           subject=":b"
