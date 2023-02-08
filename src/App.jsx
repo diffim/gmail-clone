@@ -47,6 +47,7 @@ function App() {
             <Routes>
               <Route path="/mail/:id" element={<Mail />} />
               <Route path="/" element={<EmailList />} />
+              <Route path="/private-mail" element={<EmailList privateMail />} />
             </Routes>
           </div>
 

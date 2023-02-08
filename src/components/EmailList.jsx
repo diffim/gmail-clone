@@ -21,8 +21,11 @@ import "./css-files/EmailList.css";
 import EmailRow from "./EmailRow";
 import { Link } from "react-router-dom";
 import { firebaseDb } from "../firebase";
-function EmailList() {
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/userSlice";
+function EmailList(props) {
   const [emails, setEmails] = useState([]);
+  const user = useSelector(selectUser);
 
   // access the mails collection from firebase, sort it by timestamp,
   // then anytime that changes (.onSnapshot) setEmails to all the mails we've recieved
@@ -72,33 +75,74 @@ function EmailList() {
       </div>
 
       <div className="emailList__sections">
-        <Section Icon={Inbox} title="Primary" color="red" selected />
-        <Section Icon={PeopleOutline} title="Social" color="#1a73e8" />
-        <Section Icon={LocalOfferOutlined} title="Promotions" color="green" />
+        <Section Icon={Inbox} title="Primary" color="red" selected link="/" />
+        <Section
+          Icon={PeopleOutline}
+          title="Social"
+          color="#1a73e8"
+          link="/private-mail"
+        />
+        <Section
+          Icon={LocalOfferOutlined}
+          title="Promotions"
+          color="green"
+          link=""
+          disabled
+        />
       </div>
       <div className="emailList__list">
-        <EmailRow
-          title="! tip"
-          subject="press the user icon to log out"
-          description="click + compose for new email"
-        />
-        <EmailRow
-          title="! link to my github"
-          subject=":b"
-          description="https://github.com/diffim"
-        />
-
-        {emails.map((email) => (
-          <EmailRow
-            key={email.id}
-            id={email.id}
-            title={email.data.to}
-            subject={email.data.subject}
-            description={email.data.message}
-            image={email.data.image ? email.data.image : undefined}
-            time={new Date(email.data.timestamp?.seconds * 1000).toUTCString()}
-          />
-        ))}
+        {props.privateMail ? (
+          <>
+            {emails.map((email) =>
+              email.data.isPrivateMessage && email.data.to === user.email ? (
+                <EmailRow
+                  key={email.id}
+                  id={email.id}
+                  title={email.data.to}
+                  subject={email.data.subject}
+                  description={email.data.message}
+                  image={email.data.image ? email.data.image : undefined}
+                  time={new Date(
+                    email.data.timestamp?.seconds * 1000
+                  ).toUTCString()}
+                />
+              ) : (
+                <></>
+              )
+            )}
+          </>
+        ) : (
+          <>
+            {" "}
+            <EmailRow
+              title="! tip"
+              subject="press the user icon to log out"
+              description="click + compose for new email"
+            />
+            <EmailRow
+              title="! link to my github"
+              subject=":b"
+              description="https://github.com/diffim"
+            />
+            {emails.map((email) =>
+              !email.data.isPrivateMessage ? (
+                <EmailRow
+                  key={email.id}
+                  id={email.id}
+                  title={email.data.to}
+                  subject={email.data.subject}
+                  description={email.data.message}
+                  image={email.data.image ? email.data.image : undefined}
+                  time={new Date(
+                    email.data.timestamp?.seconds * 1000
+                  ).toUTCString()}
+                />
+              ) : (
+                <></>
+              )
+            )}
+          </>
+        )}
       </div>
     </div>
   );

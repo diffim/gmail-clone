@@ -23,6 +23,7 @@ function Header() {
   const user = useSelector(selectUser);
   const darkMode = useSelector(selectOpenDarkMode);
 
+  console.log(user);
   const dispatch = useDispatch();
 
   function signOut() {

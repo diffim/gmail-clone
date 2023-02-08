@@ -19,7 +19,7 @@
 }
 
 .sendMail__open {
-  transform: translateY(0%);
+  transform: translateY(-0%);
   max-width: 500px;
 }
 
@@ -30,6 +30,17 @@
   justify-content: space-between;
   align-items: center;
   color: gray;
+}
+.MuiSwitch-track {
+  opacity: 70% !important;
+}
+.MuiSwitch-thumb {
+  background-color: rgba(3, 3, 24, 0.815) !important;
+  opacity: 100% !important;
+}
+.sendMail__options {
+  display: flex;
+  justify-content: space-between;
 }
 
 .sendMail__header > h3 {
@@ -44,7 +55,10 @@
   text-transform: capitalize !important;
   margin: 15px !important;
 }
-
+.flex {
+  display: flex;
+  align-items: center;
+}
 .sendMail__close {
   cursor: pointer;
 }
@@ -52,17 +66,27 @@
 .sendMail > form {
   display: flex;
   flex: 1;
-  position: relative;
 
   flex-direction: column;
 }
 
-.sendMail > form > input {
-  height: 30px;
-  padding: 10px;
+.sendMail > form > .input__container {
+  overflow: hidden;
+  height: 35px;
+  padding: 10px 10px;
+  background-color: white;
+  border: none;
+  position: relative;
+  outline: none;
+}
+
+.input__container > input {
+  width: 100%;
+
+  height: 100%;
+  outline: none;
   border: none;
   border-bottom: 1px solid whitesmoke;
-  outline: none;
 }
 
 .sendMail__message {
@@ -72,5 +96,8 @@
 .sendMail__errorMessage {
   color: rgb(253, 109, 109);
   background-color: white;
-  padding: 10px;
+  position: absolute;
+  pointer-events: none;
+
+  bottom: 0;
 }

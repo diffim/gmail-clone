@@ -1,5 +1,5 @@
 import { Close } from "@mui/icons-material";
-import { Button, IconButton } from "@mui/material";
+import { Button, IconButton, Switch, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +14,7 @@ import firebase from "firebase/compat";
 
 function SendMail() {
   const dispatch = useDispatch();
-  const showSendMail = useSelector(selectSendMessageIsOpen);
+  const [privateMessage, setPrivateMessage] = useState(false);
   const [minimizeSendMail, setMinimizeSendMail] = useState(true);
   const {
     register,
@@ -24,17 +24,16 @@ function SendMail() {
   } = useForm();
 
   function onSubmit(formData) {
-    console.log(formData);
     firebaseDb.collection("emails").add({
       to: formData.to,
       subject: formData.subject,
       message: formData.message,
       image: formData.image,
+      isPrivateMessage: privateMessage,
 
       //this basically means change the time it was sent dynamically based on the users timezone that they currently reside in
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
-
     //this closes the mailsend thingy
     dispatch(closeSendMessage());
   }
@@ -65,53 +64,73 @@ function SendMail() {
         */}
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          name="to"
-          type="email"
-          autoComplete="off"
-          placeholder="To"
-          {...register("to", { required: "To is required" })}
-        />
+        <div className="input__container">
+          <input
+            name="to"
+            type="email"
+            autoComplete="off"
+            placeholder="To"
+            {...register("to", { required: "To is required" })}
+          />
 
-        {errors.to && (
-          <p className="sendMail__errorMessage">{errors.to.message}</p>
-        )}
-        <input
-          name="subject"
-          autoComplete="off"
-          type="text"
-          placeholder="Subject"
-          {...register("subject", { required: "Subject is required" })}
-        />
+          {errors.to && (
+            <p className="sendMail__errorMessage">{errors.to.message}</p>
+          )}
+        </div>
 
-        {errors.subject && (
-          <p className="sendMail__errorMessage">{errors.subject.message}</p>
-        )}
+        <div className="input__container">
+          <input
+            name="subject"
+            autoComplete="off"
+            type="text"
+            placeholder="Subject"
+            {...register("subject", { required: "Subject is required" })}
+          />
 
-        <input
-          name="image"
-          type="text"
-          autoComplete="off"
-          placeholder="Image url (optional)"
-          {...register("image")}
-        />
-        <input
-          name="message"
-          type="text"
-          autoComplete="off"
-          placeholder=""
-          {...register("message", { required: "Message is required" })}
-          className="sendMail__message"
-        />
+          {errors.subject && (
+            <p className="sendMail__errorMessage">{errors.subject.message}</p>
+          )}
+        </div>
 
-        {errors.message && (
-          <p className="sendMail__errorMessage">{errors.message.message}</p>
-        )}
+        <div className="input__container">
+          <input
+            name="image"
+            type="text"
+            autoComplete="off"
+            placeholder="Image url (optional)"
+            {...register("image")}
+          />
+        </div>
+        <div className="input__container sendMail__message">
+          <input
+            name="message"
+            type="text"
+            autoComplete="off"
+            placeholder="message"
+            {...register("message", { required: "Message is required" })}
+            className="sendMail__message"
+          />
 
+          {errors.message && (
+            <p className="sendMail__errorMessage ">{errors.message.message}</p>
+          )}
+        </div>
         <div className="sendMail__options">
           <Button className="sendMail__send" variant="contained" type="submit">
             Send
           </Button>
+          <div className="flex">
+            <Typography
+              fontSize={"small"}
+              color={privateMessage ? "#4b90ff" : "white"}
+            >
+              Private Message
+            </Typography>
+            <Switch
+              checked={privateMessage}
+              onClick={(e) => setPrivateMessage(e.target.checked)}
+            />
+          </div>
         </div>
       </form>
     </div>

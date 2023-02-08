@@ -1,10 +1,15 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 import "./css-files/Section.css";
 
-function Section({ title, color, Icon, selected }) {
+function Section({ title, color, Icon, selected, link, disabled }) {
   return (
-    <div
-      className={`section ${selected && "section-selected"}`}
+    <NavLink
+      to={link}
+      // className={`section ${isActive && "section-selected"}`}
+      className={({ isActive }) =>
+        isActive && !disabled ? "section-selected section" : "section"
+      }
       style={{
         color: `${selected && color}`,
         borderBottom: `3px solid ${color}`,
@@ -12,7 +17,7 @@ function Section({ title, color, Icon, selected }) {
     >
       <Icon />
       <h4>{title}</h4>
-    </div>
+    </NavLink>
   );
 }
 
