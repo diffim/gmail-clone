@@ -78,7 +78,7 @@ function EmailList(props) {
         <Section Icon={Inbox} title="Primary" color="red" selected link="/" />
         <Section
           Icon={PeopleOutline}
-          title="Social"
+          title="Private"
           color="#1a73e8"
           link="/private-mail"
         />

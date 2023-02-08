@@ -16,7 +16,7 @@ function Section({ title, color, Icon, selected, link, disabled }) {
       }}
     >
       <Icon />
-      <h4>{title}</h4>
+      <h4 style={{ color: "gray" }}>{title}</h4>
     </NavLink>
   );
 }
