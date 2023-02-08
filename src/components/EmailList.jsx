@@ -43,6 +43,8 @@ function EmailList(props) {
       );
   }, []);
 
+  console.log(emails);
+
   return (
     <div className="emailList">
       <div className="emailList__settings">
@@ -78,7 +80,7 @@ function EmailList(props) {
         <Section Icon={Inbox} title="Primary" color="red" selected link="/" />
         <Section
           Icon={PeopleOutline}
-          title="Private"
+          title="Private "
           color="#1a73e8"
           link="/private-mail"
         />
@@ -94,10 +96,13 @@ function EmailList(props) {
         {props.privateMail ? (
           <>
             {emails.map((email) =>
-              email.data.isPrivateMessage && email.data.to === user.email ? (
+              (email.data.isPrivateMessage && email.data.to === user.email) ||
+              (email.data.isPrivateMessage &&
+                email.data.from === user.email) ? (
                 <EmailRow
                   key={email.id}
                   id={email.id}
+                  userSent={email.data.from === user.email ? true : false}
                   title={email.data.to}
                   subject={email.data.subject}
                   description={email.data.message}

@@ -3,15 +3,17 @@ import {
   LabelImportantOutlined,
   StarBorderOutlined,
 } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
+import { Avatar, IconButton } from "@mui/material";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, redirect } from "react-router-dom";
 import { selectMail } from "../features/mailSlice";
+import { selectUser } from "../features/userSlice";
 import "./css-files/Emailrow.css";
 
-function EmailRow({ id, title, subject, description, time, image }) {
+function EmailRow({ id, title, subject, description, time, image, userSent }) {
   const dispatch = useDispatch();
+  const user = useSelector(selectUser);
 
   function openMail() {
     dispatch(
@@ -33,12 +35,13 @@ function EmailRow({ id, title, subject, description, time, image }) {
           <IconButton>
             <CheckBoxOutlineBlank />
           </IconButton>
-
           <IconButton>
             <StarBorderOutlined />
-          </IconButton>
+          </IconButton>{" "}
           <IconButton>
-            <LabelImportantOutlined />
+            <LabelImportantOutlined
+              sx={userSent ? { transform: "rotate(180deg)" } : {}}
+            />
           </IconButton>
         </div>
 

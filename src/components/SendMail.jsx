@@ -11,9 +11,12 @@ import {
 import { firebaseDb } from "../firebase";
 import "./css-files/SendMail.css";
 import firebase from "firebase/compat";
+import { selectUser } from "../features/userSlice";
 
 function SendMail() {
   const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+
   const [privateMessage, setPrivateMessage] = useState(false);
   const [minimizeSendMail, setMinimizeSendMail] = useState(true);
   const {
@@ -30,7 +33,7 @@ function SendMail() {
       message: formData.message,
       image: formData.image,
       isPrivateMessage: privateMessage,
-
+      from: user.email,
       //this basically means change the time it was sent dynamically based on the users timezone that they currently reside in
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });

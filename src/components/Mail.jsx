@@ -21,7 +21,6 @@ import "./css-files/Mail.css";
 
 function Mail() {
   const mail = useSelector(selectOpenMail);
-  console.log(mail);
   return (
     <div className="mail">
       <div className="mail__tools">
